@@ -22,7 +22,7 @@ urlpatterns = [
     path('products/<int:pk>/', ProductViews.ProductDetailView.as_view()),
 
     # cart api
-    path('carts/', CartViews.CartListView.as_view()),
+    path('cart/', CartViews.CartListView.as_view()),
     path('cart/add/', CartViews.AddToCartView.as_view()),
     path('cart/items/<int:item_id>/', CartViews.ManageCartItemView.as_view()),
 
