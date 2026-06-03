@@ -29,7 +29,7 @@ class Cart(models.Model):
     @property
     def grand_total(self):
         grand_total = self.subtotal + self.tax_amount
-        return grand_total
+        return grand_total.quantize(Decimal("0.00"))
     
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
@@ -38,3 +38,8 @@ class CartItem(models.Model):
 
     def __str__(self):
         return f"{self.product.name} x {self.quantity}"
+    
+    @property
+    def total_price(self):
+        total_price = self.product.price * self.quantity
+        return total_price
